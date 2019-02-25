@@ -18,7 +18,7 @@ import argparse
 import os
 import numpy as np
 import nwchem_movecs_parser as nwcparse
-import parse_zora as zora
+import nwchem_zora_parser as zora
 import time
 
 start_time = time.time()
