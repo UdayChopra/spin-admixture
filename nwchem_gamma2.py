@@ -43,7 +43,7 @@ ha     = m.homo_index[0]- n # index of the perturbed orbital
 m.psia = np.matrix(m.psia)      
 m.psib = np.matrix(m.psib)      
 
-zora_sf_up, zora_sf_dn, zora_sf_sc_up, zora_sf_sc_dn, zora_so_x, zora_so_y, zora_so_z, zora_so_sc_x, zora_so_sc_y, zora_so_sc_z = zora.read_nwchem_zora(args.zorafile)
+zora = zora.read_nwchem_zora(args.zorafile)
 
 nstates = len(m.evalsa)
 
@@ -51,9 +51,9 @@ H_uu = np.array(np.zeros(nstates,dtype=np.complex128))
 H_ud = np.array(np.zeros(nstates,dtype=np.complex128))
 
 # Transforming basis of H_soc to spin-polarized basis 
-zora_so_x = np.matmul(m.psib.getH(),np.matmul(zora_so_x,m.psia))
-zora_so_y = np.matmul(m.psib.getH(),np.matmul(zora_so_y,m.psia))
-zora_so_z = np.matmul(m.psia.getH(),np.matmul(zora_so_z,m.psia))
+zora_so_x = np.matmul(m.psib.getH(),np.matmul(zora_so_x["so_x"],m.psia))
+zora_so_y = np.matmul(m.psib.getH(),np.matmul(zora_so_y["so_y"],m.psia))
+zora_so_z = np.matmul(m.psia.getH(),np.matmul(zora_so_z["so_z"],m.psia))
 
 # Deleting the ha (alpha spin HOMO intex) row-vector from the alpha and beta eigen-value differences (perturbation theory doesn't loop over alpha-HOMO)
 dea = np.delete((m.evalsa[:] - m.evalsa[ha]),ha)
