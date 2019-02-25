@@ -62,6 +62,18 @@ def read_nwchem_zora(fname):
     zora_so_x=1j*np.matrix(np.reshape(zora_so_x,(nbf,nbf)))
     zora_so_y=1j*np.matrix(np.reshape(zora_so_y,(nbf,nbf)))
     zora_so_z=1j*np.matrix(np.reshape(zora_so_z,(nbf,nbf))) 
+    
+    zora = {"sf_up":zora_sf_up,
+            "sf_dn":zora_sf_dn,
+            "sf_up_sc":zora_sf_sc_up,
+            "sf_dn_sc":zora_sf_sc_dn,
+            "so_z":zora_so_z,
+            "so_y":zora_so_y,
+            "so_x":zora_so_z,
+            "so_z_sc":zora_so_sc_z,
+            "so_y_sc":zora_so_sc_y,
+            "so_x_sc":zora_so_sc_x,
+            }
 
-
-    return zora_sf_up, zora_sf_dn, zora_sf_sc_up, zora_sf_sc_dn, zora_so_x, zora_so_y, zora_so_z, zora_so_sc_x, zora_so_sc_y, zora_so_sc_z
+#    return zora_sf_up, zora_sf_dn, zora_sf_sc_up, zora_sf_sc_dn, zora_so_x, zora_so_y, zora_so_z, zora_so_sc_x, zora_so_sc_y, zora_so_sc_z
+    return zora
