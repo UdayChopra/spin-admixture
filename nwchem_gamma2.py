@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 '''
 This python module calculates the spin-admixture parameter [citation]. It has
