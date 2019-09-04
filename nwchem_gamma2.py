@@ -93,6 +93,6 @@ else:
     fname = outfilename + "_gamma2.dat"
     with open(fname, 'w+') as f:
         f.write(("#Total gamma2\t\tgamma2_up\t\tgamma2_dn\n%16.12e\t%16.12e\t%16.12e\n") %(gamma2.item().real, gamma_uu.item().real, gamma_ud.item().real))
+        print(("Calculation time : %5.3f minutes") %((time.time()-start_time)/60))
 
-print(("Calculation time : %5.3f minutes") %((time.time()-start_time)/60))
 
