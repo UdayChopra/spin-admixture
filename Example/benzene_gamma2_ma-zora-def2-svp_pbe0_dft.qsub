@@ -1,0 +1,14 @@
+#!/bin/bash
+#PBS -q batch
+#PBS -N benzene_gamma2_ma-zora-def2-svp_pbe0_dft
+#PBS -j oe
+#PBS -o /dev/null
+#PBS -l nodes=1:ppn=17,pmem=3400mb
+#PBS -l ncpus=17,mem=57800mb
+export OMP_NUM_THREADS=1
+name="benzene_gamma2_ma-zora-def2-svp_pbe0_dft"
+export PATH=/home/uday/bin:/home/uday/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/mnt/Data/uday/work/bin:/mnt/Data/uday/work/bin/Potential_avg:/mnt/Data/uday/work/bin/Utils/:/mnt/Data/uday/work/bin/cube_tools-20081027:/usr/local/bin/qe-6.2.1:/home/uday/Programs/eclipse/java-oxygen/eclipse
+cd ${PBS_O_WORKDIR} && \
+export ARMCI_DEFAULT_SHMMAX=8192 && \ 
+mpirun -n 17 nwchem-6.8-mpi \
+${name}.nw >& ${name}.out

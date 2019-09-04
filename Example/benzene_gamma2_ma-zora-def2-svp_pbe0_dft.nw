@@ -1,0 +1,69 @@
+echo
+
+scratch_dir ./scratch
+
+title "benzene_gamma2_ma-zora-def2-svp_pbe0_dft"
+
+Charge 1 
+
+basis "ao basis" spherical
+  * library ma-zora-def2-svp except C
+  C    S
+     1238.40169380             5.727408300E-03
+      186.29004992             4.213600060E-02
+       42.25117635             1.866435633E-01
+       11.67655793             4.678258158E-01
+        3.59305065             4.421228295E-01
+  C    S
+        0.40245147             1.000000000E+00
+  C    S
+        0.13090183            -1.000000000E+00
+  C    P
+        9.46809706             5.701225280E-02
+        2.01035451             3.130476217E-01
+        0.54771005             7.605188875E-01
+  C    P
+        0.15268614             1.000000000E+00
+  C    D
+        0.80000000             1.000000000E+00
+  #C    S
+  #     0.04363394             1.000000000E+00
+end
+
+set tolguess 5e-8
+set int:acc_std 1d-14
+
+#memory total 1800 mb 
+
+dft
+  direct
+  xc pbe0
+  decomp
+  grid xfine nodisk     # Extra fine integration grid not stored on disk
+  tolerances tight tol_rho 1e-13 accCoul 14     # Coulomb screening tolerances etc.
+  convergence energy 5e-9 nolevelshifting       # SCF total energy convergence criterion
+  iterations 200        # Maximum SCF iterations
+  mult 2
+end
+
+relativistic
+  zora on
+  zora:cutoff 1d-30
+end
+
+geometry noautosym noautoz
+C -1.40024273 0.02232486 0.00000000 
+C -0.71074846 -1.25212625 0.00000000 
+C 0.67044064 -1.27415126 0.00000000 
+C 1.40024254 -0.02232486 0.00000000 
+C 0.71074856 1.25212608 0.00000000 
+C -0.67044053 1.27415143 0.00000000 
+H -1.29869210 -2.17946235 0.00000000 
+H 1.22851910 -2.21976360 0.00000000 
+H 2.50436689 -0.03994437 0.00000000 
+H 1.29869187 2.17946273 0.00000000 
+H -1.22851937 2.21976321 0.00000000 
+H -2.50436664 0.03994438 0.00000000 
+end
+
+task dft
