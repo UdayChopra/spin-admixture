@@ -9,11 +9,23 @@ Uday Chopra 2018
 from scipy.io import FortranFile
 import numpy as np
 
+
+def read_ints(f,dt):
+	r = np.fromfile(f, dtype=np.int32, count=1)[0]
+	r = int(r / np.dtype(dt).itemsize)
+	ints = np.fromfile(f, dtype=dt, count=r)
+	f.seek(4,1)
+	return ints
+
 def read_nwchem_zora(fname):
+    with open(fname) as ff:
+        l = np.fromfile(ff, dtype=np.int32, count=1)[0]
+    itype = np.int32
+    if ( l == 8 ): itype = np.int64
     f = FortranFile(fname, 'r')
-    nsets=f.read_record(dtype=np.int64)[0] # 2 for UHF 1 for RHF
-    nbf=f.read_record(dtype=np.int64)[0]   # number of basis functions
-    mult=f.read_record(dtype=np.int64)[0]  # spin-multiplicity
+    nsets = f.read_record(dtype=itype)[0]   # 2 for UHF 1 for RHF
+    nbf   = f.read_record(dtype=itype)[0]   # number of basis functions
+    mult  = f.read_record(dtype=itype)[0]   # spin-multiplicity
 
 # Variable names of ten (nbf x nbf) matrices are self-explanatory. Only spin-orbit matrices need to be imaginary. 
     
