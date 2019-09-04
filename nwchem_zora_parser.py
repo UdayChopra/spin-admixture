@@ -69,11 +69,10 @@ def read_nwchem_zora(fname):
             "sf_dn_sc":zora_sf_sc_dn,
             "so_z":zora_so_z,
             "so_y":zora_so_y,
-            "so_x":zora_so_z,
+            "so_x":zora_so_x,
             "so_z_sc":zora_so_sc_z,
             "so_y_sc":zora_so_sc_y,
             "so_x_sc":zora_so_sc_x,
             }
 
-#    return zora_sf_up, zora_sf_dn, zora_sf_sc_up, zora_sf_sc_dn, zora_so_x, zora_so_y, zora_so_z, zora_so_sc_x, zora_so_sc_y, zora_so_sc_z
     return zora

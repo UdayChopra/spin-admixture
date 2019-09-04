@@ -51,9 +51,12 @@ H_uu = np.array(np.zeros(nstates,dtype=np.complex128))
 H_ud = np.array(np.zeros(nstates,dtype=np.complex128))
 
 # Transforming basis of H_soc to spin-polarized basis 
-zora_so_x = np.matmul(m.psib.getH(),np.matmul(zora_so_x["so_x"],m.psia))
-zora_so_y = np.matmul(m.psib.getH(),np.matmul(zora_so_y["so_y"],m.psia))
-zora_so_z = np.matmul(m.psia.getH(),np.matmul(zora_so_z["so_z"],m.psia))
+Lx = zora.get("so_x")
+Ly = zora.get("so_y")
+Lz = zora.get("so_z")
+zora_so_x = np.matmul(m.psib.getH(),np.matmul(Lx,m.psia))
+zora_so_y = np.matmul(m.psib.getH(),np.matmul(Ly,m.psia))
+zora_so_z = np.matmul(m.psia.getH(),np.matmul(Lz,m.psia))
 
 # Deleting the ha (alpha spin HOMO intex) row-vector from the alpha and beta eigen-value differences (perturbation theory doesn't loop over alpha-HOMO)
 dea = np.delete((m.evalsa[:] - m.evalsa[ha]),ha)
